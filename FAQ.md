@@ -9,9 +9,11 @@
 
 ### How do I open a good Issue?
 1. Click the **Issues** tab -> **New Issue**.
-2. Give it a clear title (e.g., `[UC-0A] Confusion about severity keywords`).
+2. Give it a clear title (e.g., \`[UC-0A] Confusion about severity keywords\`).
 3. Describe what you're seeing and what you expected.
 4. Add a screenshot if it helps!
+
+---
 
 ## 🚀 Creating a Pull Request (PR)
 
@@ -25,11 +27,59 @@ git clone https://github.com/[your-username]/prompt-to-production.git
 cd prompt-to-production
 ```
 
+### Step 3: Create a Branch
+**Crucial:** Do not work on the \`main\` branch. Create a new one:
+```bash
+git checkout -b participant/[your-name]-[city]
+# Example: git checkout -b participant/arshdeep-pune
+```
+
+### Step 4: Commit & Push
+Follow the commit message standard mentioned in the README:
+```bash
+git add .
+git commit -m \"[UC-0A] Fix severity: missing keywords → added triggers\"
+git push origin participant/[your-name]-[city]
+```
+
+### Step 5: Open the PR
+1. Go to the **original** repository (nasscomAI/prompt-to-production).
+2. You'll see a yellow bar saying \"Compare & pull request\" — click it!
+3. Ensure the **base** is \`nasscomAI/main\` and the **head** is your branch.
+4. Fill out the PR template completely.
+
 ---
 
 ## 📥 Clone & Download Issues
 
-... (previous content)
+### ❌ Error: \"Permission Denied (publickey)\"
+This happens if you haven't set up SSH keys on GitHub or your local agent isn't running.
+- **Quick Fix:** Use the **HTTPS** URL instead of SSH.
+- Copy the URL starting with \`https://github.com/...\` from the green **Code** button.
+- **SSH Fix:** Run \`ssh-add ~/.ssh/id_ed25519\` (or your key name) to ensure your key is active.
+
+### ❌ Error: \"Cloned an empty repository\"
+If your folder is empty after cloning:
+1. **Check your URL:** Ensure you are cloning your **fork** (e.g., \`github.com/YOUR-NAME/...\`) and not a blank repository you just created.
+2. **Check the branch:** Sometimes the default branch is different. Run \`git branch -a\` to see all available branches.
+3. **Hidden Files:** On Mac/Linux, run \`ls -la\`. On Windows, enable \"Hidden items\" in File Explorer.
+
+### ❌ Authentication Failed (HTTPS)
+If GitHub asks for a password and fails:
+- **Personal Access Token (PAT):** Since 2021, GitHub requires a PAT instead of your account password for command-line Git.
+- [Generate a PAT here](https://github.com/settings/tokens) with \`repo\` scope.
+
+### ❌ Still can't clone? (Download as ZIP)
+If Git is giving you too much trouble:
+1. Click the green **Code** button on GitHub.
+2. Select **Download ZIP**.
+3. Extract the files and then run \`git init\` inside that folder to start your Git journey manually.
+
+---
+
+## 📖 Useful Resources
+- [GitHub Best Practices for Repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/best-practices-for-repositories)
+- [Official GitHub Desktop](https://desktop.github.com/) (Great for those who prefer a GUI over CLI!)
 
 ---
 
@@ -42,11 +92,11 @@ wsl --install
 ```
 Restart your computer after it finishes. By default, this installs Ubuntu.
 
-### ❌ Error: "Virtualization is not enabled" (0x80370102)
-This means your computer's BIOS has "Virtualization Technology" (VT-x or AMD-V) disabled.
+### ❌ Error: \"Virtualization is not enabled\" (0x80370102)
+This means your computer's BIOS has \"Virtualization Technology\" (VT-x or AMD-V) disabled.
 - **Fix:** Restart your PC, enter BIOS (usually F2, F10, or Del), find the **Virtualization** setting, and set it to **Enabled**.
 
-### ❌ Error: "WSL 2 requires an update to its kernel component" (0x800701bc)
+### ❌ Error: \"WSL 2 requires an update to its kernel component\" (0x800701bc)
 - **Fix:** Download and run the [WSL2 Linux kernel update package](https://aka.ms/wsl2kernel).
 
 ### How do I open my files in VS Code?
@@ -56,45 +106,18 @@ code .
 ```
 *(Make sure you have the **WSL** extension installed in VS Code for this to work!)*
 
-### Where are my Windows files in WSL?
-Your Windows `C:` drive is available at `/mnt/c/`.
-Example: `cd /mnt/c/Users/YourName/Documents`
-
----
-
-## 🚧 Common Troubleshooting
-**Crucial:** Do not work on the `main` branch. Create a new one:
-```bash
-git checkout -b participant/[your-name]-[city]
-# Example: git checkout -b participant/arshdeep-pune
-```
-
-### Step 4: Commit & Push
-Follow the commit message standard mentioned in the README:
-```bash
-git add .
-git commit -m "[UC-0A] Fix severity: missing keywords → added triggers"
-git push origin participant/[your-name]-[city]
-```
-
-### Step 5: Open the PR
-1. Go to the **original** repository (nasscomAI/prompt-to-production).
-2. You'll see a yellow bar saying "Compare & pull request" — click it!
-3. Ensure the **base** is `nasscomAI/main` and the **head** is your branch.
-4. Fill out the PR template completely.
-
 ---
 
 ## 🚧 Common Troubleshooting
 
 ### My PR has a red 'X' (Validation Failed)
 Check the **Actions** tab. It's likely one of two things:
-1. **Commit Message:** Ensure your message follows the exact `[UC-ID] Fix... → ...` format.
+1. **Commit Message:** Ensure your message follows the exact \`[UC-ID] Fix... → ...\` format.
 2. **Python Syntax:** Your script might have a typo. Run it locally first!
 
 ### How do I sync my fork with the main repo?
 If the workshop leads update the main repo, you can sync yours by clicking **Sync fork** on your GitHub repo page or running:
-```bash
+\`\`\`bash
 git fetch upstream
 git merge upstream/main
-```
+\`\`\`
